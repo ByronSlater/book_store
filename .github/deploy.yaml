@@ -1,0 +1,85 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: prod
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Copy app to EC2
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: "ec2-user"
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "./Dockerfile, ./*.py, ./requirements.txt, ./seeds, ./templates, ./static"
+          target: ~/book_store
+
+      - name: Ensure Docker network exists
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: "ec2-user"
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            if [ ! "$(docker network ls -q -f name=book_store_network)" ]; then
+              docker network create book_store_network
+            fi
+
+      - name: Ensure database is running
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: "ec2-user"
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            if [ ! "$(docker ps -aq -f name=book_store_db)" ]; then
+              docker run \
+                --name book_store_db \
+                --network book_store_network \
+                -e POSTGRES_USER='${{ secrets.POSTGRES_USER }}' \
+                -e POSTGRES_PASSWORD='${{ secrets.POSTGRES_PASSWORD }}' \
+                -e POSTGRES_DB='book_store' \
+                -d postgres:17
+              docker exec -i book_store_db psql -U postgres -d book_store < ~/book_store/seeds/books.sql
+            fi
+
+      - name: Build Docker image
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: "ec2-user"
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            docker build --pull -t book_store:latest ~/book_store
+
+      - name: Deploy new container
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: "ec2-user"
+          port: 22
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            if [ "$(docker ps -q -f name=^book_store$)" ]; then
+              docker stop $(docker ps -q -f name=^book_store$) || true
+            fi
+            docker rm book_store || true
+            docker image prune -f || true
+            docker run -d \
+              --name book_store \
+              --network book_store_network \
+              --restart unless-stopped \
+              -p 5001:5001 \
+              book_store:latest
