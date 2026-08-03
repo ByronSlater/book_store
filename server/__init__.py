@@ -2,8 +2,6 @@ import os
 
 from flask import Flask
 
-from .database import get_db
-
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -14,36 +12,15 @@ def create_app(test_config=None):
         DATABASE='postgresql://postgres:password@book_store_db/book_store',
     )
 
+    import database
+    database.init_app(app)
 
     import auth
     auth.bp.register(app)
 
 
-    @app.route('/books')
-    def books():
-        db = get_db()
-
-        rows = db.execute("SELECT * FROM books;")
-
-        return [
-            {**row} for row in rows
-        ]
-
-    @app.route('/authors')
-    def authors():
-        db = get_db()
-
-        rows = db.execute("SELECT name, dob FROM authors;")
-
-        return [
-            {
-                'name': row['name'],
-                'dob': row['dob']
-            }
-            for row in rows
-        ]
-
-    from . import database
-    database.init_app(app)
+    @app.route('/test')
+    def test():
+        return 'Hello'
 
     return app
