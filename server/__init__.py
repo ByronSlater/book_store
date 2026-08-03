@@ -15,6 +15,10 @@ def create_app(test_config=None):
     )
 
 
+    import auth
+    auth.bp.register(app)
+
+
     @app.route('/books')
     def books():
         db = get_db()
