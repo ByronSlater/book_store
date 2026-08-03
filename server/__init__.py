@@ -14,6 +14,7 @@ def create_app(test_config=None):
         DATABASE='postgresql://postgres:password@book_store_db/book_store',
     )
 
+
     @app.route('/books')
     def books():
         db = get_db()
