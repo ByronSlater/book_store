@@ -12,11 +12,11 @@ def create_app(test_config=None):
         DATABASE='postgresql://postgres:password@book_store_db/book_store',
     )
 
-    import database
+    from . import database
     database.init_app(app)
 
-    import auth
-    auth.bp.register(app)
+    from . import auth
+    app.register_blueprint(auth.bp)
 
 
     @app.route('/test')
