@@ -20,6 +20,7 @@ def create_app(test_config=None):
 
         rows = db.execute("SELECT * FROM books;")
 
+
         return [
             {**row} for row in rows
         ]
