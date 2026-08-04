@@ -10,9 +10,13 @@ def register():
         return render_template('auth/register.html', errors=request.args.get('errors', []))
 
     elif request.method == 'POST':
-        return redirect(url_for('auth.register', errors=['BIIG PROBLEM']))
+        return redirect(url_for('auth.register', errors=['BIG PROBLEM']))
 
 
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
-    return 'LOGIN'
+    if request.method == 'GET':
+        return render_template('auth/login.html', errors=request.args.getlist('errors'))
+
+    elif request.method == 'POST':
+        return redirect(url_for('auth.login', errors=['INVALID LOGIN']))
