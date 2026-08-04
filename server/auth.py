@@ -10,7 +10,7 @@ def register():
         return render_template('auth/register.html', errors=request.args.get('errors', []))
 
     elif request.method == 'POST':
-        return redirect(url_for('/register', errors=['BIIG PROBLEM']))
+        return redirect(url_for('auth.register', errors=['BIIG PROBLEM']))
 
 
 @bp.route('/login', methods=['GET', 'POST'])
