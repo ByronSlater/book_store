@@ -14,14 +14,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Copy app to EC2
-        uses: appleboy/scp-action@v0.1.4
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: "ec2-user"
-          port: 22
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./Dockerfile, ./*.sh, ./requirements.txt, ./tests ./server ./instance"
-          target: ~/book_store
+        run: ./deploy.sh
+        # uses: appleboy/scp-action@v0.1.4
+        # with:
+        #   host: ${{ secrets.EC2_HOST }}
+        #   username: "ec2-user"
+        #   port: 22
+        #   key: ${{ secrets.EC2_SSH_KEY }}
+        #   source: "./Dockerfile, ./boot.sh, ./requirements.txt, ./tests ./server ./instance"
+        #   target: ~/book_store
 
       - name: Ensure Docker network exists
         uses: appleboy/ssh-action@v1.0.3
