@@ -20,7 +20,7 @@ jobs:
           username: "ec2-user"
           port: 22
           key: ${{ secrets.EC2_SSH_KEY }}
-          source: "./*"
+          source: "./Dockerfile, ./*.sh, ./requirements.txt, ./tests ./server ./instance"
           target: ~/book_store
 
       - name: Ensure Docker network exists

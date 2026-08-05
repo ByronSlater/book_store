@@ -1,22 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>
-        HERE WE GO BOY
-    </h1>
+{%extends "auth/auth.html" %}
 
-    <form method="post">
-        <input type="submit" value="Bad"/>
-    </form>
+{% block title %}
+<title>Register</title>
+{% endblock %}
 
-    {% for error in errors %}
-    <p>{{error}}</p>
-    {% endfor %}
-
-</body>
-</html>
+{% block content %}
+<div>
+<h3 class="text-center">Register</h3>
+<form id="register" action="register" method="post" class="flex flex-col">
+  <div class="mb-4 w-full">
+    <label for="username" class="label">Username</label>
+    <input name="username" type="text" class="input w-full">
+  </div>
+  <div class="mb-4 w-full">
+    <label for="password" class="label">Password</label>
+    <input name="password" type="password" class="input w-full">
+  </div>
+  <div class="mb-4 w-full">
+    <label for="passwordconfirm" class="label">Confirm password</label>
+    <input name="passwordconfirm" type="password" class="input w-full">
+  </div>
+  <div class="w-full">
+    <input type="submit" class="btn w-fit px-8 float-right responsive" value="Register">
+  </div>
+</form>
+</div>
+{% endblock %}

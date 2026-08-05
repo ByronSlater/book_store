@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% block title %} {% endblock %}
+  <title>Chapter and Verse</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="{{url_for('static', filename='favicon/apple-touch-icon.png')}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{url_for('static', filename='favicon/favicon-32x32.png')}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{url_for('static', filename='favicon/favicon-16x16.png')}}">
+  <link rel="manifest" href="{{url_for('static', filename='site.web.webmanifest')}}">
+  <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/app.css')}}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single:wght,ELXP@100..900,5&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+
+<body class="flex flex-col h-screen justify-between">
+  <nav class="bg-linear-to-b font-[Playfair_Display] border-b-2 ">
+    <div class="flex flex-col w-full justify-between items-center md:flex-row max-w-5xl mx-auto py-3 px-3 sm:px-6 lg:px-8 sticky top-0">
+      <h2 class="font-[Playfair_Display] text-2xl font-bold italic">Chapter and Verse</h2>
+      <input type="checkbox" value="dark" class="toggle theme-controller" />
+      <a class="font-[Quicksand]" href="/login">Login/Register</a>
+    </div>
+  </nav>
+
+  <main class="max-w-5xl flex-1 min-w-dvw">
+    {% block body %}{% endblock %}
+  </main>
+
+  {# <footer class="text-center absolute bottom-4 place-self-center max-h-0">
+    <p class="font-[Bitcount_Prop_Single] font-light px-6 py-1 mx-auto w-fit rounded-3xl">
+      Coded by <span class="font-medium">Byron&#8482;</span>
+    </p>
+  </footer> #}
+</body>
+
+</html>

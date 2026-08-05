@@ -1,0 +1,22 @@
+{
+  "name": "book_store",
+  "description": "Book store",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.3",
+    "esbuild": "^0.28.1",
+    "esbuild-copy-static-files": "^0.1.0",
+    "tailwindcss": "^4.3.3"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "@parcel/watcher@2.5.1": true
+  },
+  "devDependencies": {
+    "daisyui": "^5.7.16"
+  },
+  "scripts": {
+    "watch": "tailwindcss -i static/src/app.css -o static/css/app.css --cwd .. --watch",
+    "build": "tailwindcss -i static/src/app.css -o static/css/app.css --cwd .. --minify"
+  }
+}

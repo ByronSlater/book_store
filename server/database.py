@@ -7,7 +7,7 @@ from psycopg.rows import dict_row
 def get_db():
     if 'db' not in g:
         g.db = psycopg.connect(
-            current_app.config['DATABASE'],
+            current_app.config['DATABASE_URI'],
             row_factory=dict_row
         )
 

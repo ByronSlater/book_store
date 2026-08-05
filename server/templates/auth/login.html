@@ -1,0 +1,24 @@
+{% extends "auth/auth.html" %}
+
+{%block title%}<title>Login</title>{%endblock%}
+
+{% block content %}
+<div>
+<h3 class="text-center">Login</h3>
+<form id="login" action="login" method="post" class="flex flex-col">
+
+  <div class="mb-4 w-full">
+    <label for="username" class="label">Username</label>
+    <input name="username" type="text" class="input w-full">
+  </div>
+  <div class="mb-4 w-full">
+    <label for="password" class="label">Password</label>
+    <input name="password" type="password" class="input w-full">
+  </div>
+  <div class="w-full flex justify-between items-center">
+    <a class="italic ml-2 font-light" href="/register">Create account</a>
+    <input type="submit" class="btn w-fit px-8 responsive" value="Login">
+  </div>
+</form>
+</div>
+{% endblock %}

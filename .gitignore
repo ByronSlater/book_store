@@ -3,3 +3,7 @@
 __pycache__/
 
 *.py[ic]
+.DS_Store
+node_modules/
+.vscode/
+.flaskenv

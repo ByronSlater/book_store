@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+    themes: coffee --default, dark;
+};
+
+@theme {
+    --color-blood-red-50: #fde9e7;
+    --color-blood-red-100: #fbd3d0;
+    --color-blood-red-200: #f7a8a1;
+    --color-blood-red-300: #f47c71;
+    --color-blood-red-400: #f05142;
+    --color-blood-red-500: #ec2513;
+    --color-blood-red-600: #bd1e0f;
+    --color-blood-red-700: #8e160b;
+    --color-blood-red-800: #5e0f08;
+    --color-blood-red-900: #2f0704;
+    --color-blood-red-950: #210503;
+
+    --color-apricot-cream-50: #fcf6e9;
+    --color-apricot-cream-100: #f9edd2;
+    --color-apricot-cream-200: #f2daa6;
+    --color-apricot-cream-300: #ecc879;
+    --color-apricot-cream-400: #e6b54c;
+    --color-apricot-cream-500: #dfa320;
+    --color-apricot-cream-600: #b38219;
+    --color-apricot-cream-700: #866213;
+    --color-apricot-cream-800: #59410d;
+    --color-apricot-cream-900: #2d2106;
+    --color-apricot-cream-950: #1f1704;
+
+    --color-dark-walnut-50: #fbf1ea;
+    --color-dark-walnut-100: #f6e4d5;
+    --color-dark-walnut-200: #edc9ab;
+    --color-dark-walnut-300: #e4ae81;
+    --color-dark-walnut-400: #db9257;
+    --color-dark-walnut-500: #d2772d;
+    --color-dark-walnut-600: #a85f24;
+    --color-dark-walnut-700: #7e481b;
+    --color-dark-walnut-800: #543012;
+    --color-dark-walnut-900: #2a1809;
+    --color-dark-walnut-950: #1d1106;
+
+    --color-saddle-brown-50: #fbf1ea;
+    --color-saddle-brown-100: #f7e3d4;
+    --color-saddle-brown-200: #eec7aa;
+    --color-saddle-brown-300: #e6ac7f;
+    --color-saddle-brown-400: #dd9055;
+    --color-saddle-brown-500: #d5742a;
+    --color-saddle-brown-600: #aa5d22;
+    --color-saddle-brown-700: #804619;
+    --color-saddle-brown-800: #552e11;
+    --color-saddle-brown-900: #2b1708;
+    --color-saddle-brown-950: #1e1006;
+
+    --color-dark-coffee-50: #f9f0eb;
+    --color-dark-coffee-100: #f3e1d8;
+    --color-dark-coffee-200: #e8c4b0;
+    --color-dark-coffee-300: #dca689;
+    --color-dark-coffee-400: #d08862;
+    --color-dark-coffee-500: #c46b3b;
+    --color-dark-coffee-600: #9d552f;
+    --color-dark-coffee-700: #764023;
+    --color-dark-coffee-800: #4f2b17;
+    --color-dark-coffee-900: #27150c;
+    --color-dark-coffee-950: #1b0f08;
+}
