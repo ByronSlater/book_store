@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, render_template
+from flask import Flask, redirect, render_template
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
@@ -19,6 +19,10 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+
+    @app.route('/')
+    def index():
+        return redirect('/home')
 
     @app.route('/home')
     def home():
