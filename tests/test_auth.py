@@ -38,8 +38,6 @@ def test_check_user_works(test_client, db):
         'password': 'test_password'
     })
 
-    print(response)
-
     assert response.status_code == 302
 
 

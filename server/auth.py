@@ -37,7 +37,6 @@ def load_logged_in_user():
 def register():
     if request.method == 'GET':
         error = session.get('register_error', False)
-        print(f'ERROR: {error}')
         if error:
             del session['register_error']
         return render_template('auth/register.html', error=error)
@@ -54,9 +53,6 @@ def register():
         if len(password) == 0:
             session['register_error'] = 'No password provided'
             return redirect(url_for('auth.register'))
-
-
-        print(f'username: "{username}", password="{password}", confirm="{confirm_password}"')
 
 
         if password != confirm_password:
