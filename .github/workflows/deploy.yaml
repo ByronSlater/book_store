@@ -87,8 +87,8 @@ jobs:
             fi
             docker rm book_store || true
             docker image prune -f || true
-            EXPORT WIKIMEDIA_ACCESS_TOKEN=${{secrets.WIKIMEDIA_ACCESS_TOKEN}}
             docker run -d \
+              -i WIKIMEDIA_ACCESS_TOKEN=${{secrets.WIKIMEDIA_ACCESS_TOKEN}}
               --name book_store \
               --network book_store_network \
               --restart unless-stopped \
