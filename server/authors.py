@@ -1,6 +1,7 @@
 import os
 from datetime import datetime
 from urllib.parse import urljoin
+import sys
 
 import requests
 from flask import (
@@ -29,8 +30,8 @@ def setup_author(author):
         headers=headers,
     )
 
-    print('WHAT IS GOING ON HERE')
-    print(resp.json())
+    print('WHAT IS GOING ON HERE', file=sys.stderr)
+    print(resp.json(), file=sys.stderr)
 
     print(resp.json()['P569'][0]['value']['content']['time'])
     ts = resp.json()['P569'][0]['value']['content']['time']
