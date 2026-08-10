@@ -29,6 +29,8 @@ def setup_author(author):
         headers=headers,
     )
 
+    print(resp.json())
+
     print(resp.json()['P569'][0]['value']['content']['time'])
     ts = resp.json()['P569'][0]['value']['content']['time']
     dob = datetime.fromisoformat(ts[1:])
