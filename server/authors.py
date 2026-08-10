@@ -32,6 +32,9 @@ def setup_author(author):
 
     print('WHAT IS GOING ON HERE', file=sys.stderr)
     print(resp.json(), file=sys.stderr)
+    print(os.environ['WIKIMEDIA_ACCESS_TOKEN'], file=sys.stderr)
+    print(resp.request.url, sys.stderr)
+    print(resp.request.headers, file=sys.stderr)
 
     print(resp.json()['P569'][0]['value']['content']['time'])
     ts = resp.json()['P569'][0]['value']['content']['time']
