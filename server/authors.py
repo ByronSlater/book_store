@@ -29,6 +29,7 @@ def setup_author(author):
         headers=headers,
     )
 
+    print('WHAT IS GOING ON HERE')
     print(resp.json())
 
     print(resp.json()['P569'][0]['value']['content']['time'])
