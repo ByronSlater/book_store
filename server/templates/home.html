@@ -1,21 +1,43 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="max-w-5xl py-12 mx-auto">
-  <h1 class="text-3xl mb-8 max-w-[60lvw] text-center mx-auto">Welcome to <span class="font-[Playfair_Display] italic">Chapter and Verse</span> where we hope you leave with a story you'll love.</h1>
+<section class="py-12">
+  <h1 class="text-3xl px-2 mb-8">Welcome to <span class="font-[Playfair_Display] italic">Chapter and
+      Verse</span> where we hope you leave with a story you'll love.</h1>
 
-  <div class="carousel rounded-box w-full h-[70lvh] bg-white">
-    <div class="carousel-item w-full h-full relative overflow-hidden">
-      <img src="{{url_for('static', filename='assets/books.png')}}" class="scale-110 object-cover blur-[3px] inset-0 absolute">
+  <div class="carousel rounded-box h-[70lvh]">
+    <a href="books" class="carousel-item w-full h-full relative overflow-hidden">
+      <img src="{{url_for('static', filename='assets/books.png')}}"
+        class="scale-110 object-cover blur-[3px] inset-0 absolute">
 
-      <div class="z-1 flex flex-col mt-auto mb-8 ml-8 glass rounded-box p-4">
+      <div
+        class="z-1 flex flex-col mt-auto mb-8 ml-8 glass bg-base-300/40 text-base-content rounded-md p-4 text-shadow-lg">
         <h3 class="text-6xl mb-1 font-[Playfair_Display]">Browse our books</h3>
         <p class="text-xl italic">Whatever you're looking for, you'll find it here.</p>
       </div>
-    </div>
-    <div class="carousel-item w-full h-full bg-gray-500"></div>
-    <div class="carousel-item w-full h-full bg-amber-500"></div>
-    <div class="carousel-item w-full h-full bg-blood-red-500"></div>
+    </a>
+    <a href="/authors"
+      class="carousel-item w-full h-full grid-cols-2 overflow-hidden grid bg-primary text-primary-content">
+      <img src="{{url_for('static', filename='assets/author_1.jpg')}}"
+        class="object-cover max-h-[70vh] w-full object-center">
+
+      <div class="grid grid-rows-2">
+        <div class="bg-[url('/static/assets/author_2.jpg')] bg-cover w-full h-full flex">
+        </div>
+        <div class="p-4">
+          <h3 class="text-6xl font-[Playfair_Display] float-right">Our authors</h3>
+          <p class="text-xl float-right">Search our library by author</p>
+        </div>
+      </div>
+    </a>
   </div>
-</div>
+</section>
+
+<section class="py-12 full-col full-width bg-secondary text-secondary-content">
+  <h3 class="mb-4 text-4xl">
+    What's on?
+  </h3>
+
+  <p>Blah blah blah something about events here</p>
+</section>
 {% endblock %}

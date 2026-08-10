@@ -4,21 +4,26 @@
 
 {% block content %}
 <div>
-<h3 class="text-center">Login</h3>
-<form id="login" action="login" method="post" class="flex flex-col">
+  <h3 class="text-center">Login</h3>
+  <form id="login" action="login" method="post" class="flex flex-col">
 
-  <div class="mb-4 w-full">
-    <label for="username" class="label">Username</label>
-    <input name="username" type="text" class="input w-full">
-  </div>
-  <div class="mb-4 w-full">
-    <label for="password" class="label">Password</label>
-    <input name="password" type="password" class="input w-full">
-  </div>
-  <div class="w-full flex justify-between items-center">
-    <a class="italic ml-2 font-light" href="/register">Create account</a>
-    <input type="submit" class="btn w-fit px-8 responsive" value="Login">
-  </div>
-</form>
+    <div class="mb-4">
+      <label for="username" class="label">Username</label>
+      <input name="username" type="text" class="input">
+    </div>
+    <div class="mb-4">
+      <label for="password" class="label">Password</label>
+      <input name="password" type="password" class="input">
+    </div>
+    <div class="w-full flex justify-between items-center">
+      <p class="italic ml-2 font-light text-base-content/60">or <a class="underline" href="{{url_for('auth.register')}}">create account</a></p>
+      <input type="submit" class="btn w-fit px-8 responsive" value="Login">
+    </div>
+    {% if error %}
+    <div>
+      <p class="text-sm italic text-error/50">Couldn't login with those details, please try again</p>
+    </div>
+    {% endif %}
+  </form>
 </div>
 {% endblock %}

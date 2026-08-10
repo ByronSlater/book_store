@@ -16,7 +16,7 @@ jobs:
       - name: Copy app to EC2
         uses: burnett01/rsync-deployments@v9
         with:
-          switches: -avzr --delete --exclude="node_modules"
+          switches: -avzr --delete --exclude="node_modules" --compress
           path: ./*
           remote_path: ~/book_store # ex: /var/www/html/
           remote_host: ${{ secrets.EC2_HOST }} # ex: example.com
@@ -87,6 +87,7 @@ jobs:
             fi
             docker rm book_store || true
             docker image prune -f || true
+            EXPORT WIKIMEDIA_ACCESS_TOKEN=${{secrets.WIKIMEDIA_ACCESS_TOKEN}}
             docker run -d \
               --name book_store \
               --network book_store_network \

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<section class="py-12">
+  <h3 class="text-4xl mb-4">This is where the books list will go</h3>
+  {% for book in books %}
+  <div class="mb-2">
+    <p class="-mb-0.5">{{book['title']}}</p>
+    <p class="text-primary/80 italic text-sm">by <a href="{{url_for('authors.author', id=book['author_id'])}}">{{book['name']}}</a></p>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

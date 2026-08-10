@@ -1,15 +1,20 @@
 {% extends "base.html" %}
 
 {% block body %}
-<div class="w-full h-full flex flex-row">
-  <div class="flex-1 h-full overflow-hidden relative">
-    <img src="{{url_for('static', filename='assets/library_hero.png')}}"
-      class="w-full h-full object-cover blur-sm scale-110" />
+<div class="flex flex-row full-col">
+    <div class="flex-1 h-full overflow-hidden relative">
+      <img src="{{url_for('static', filename='assets/library_hero.png')}}"
+        class="w-full h-full object-cover blur-sm scale-110" />
 
-    <div class="absolute bottom-1/5 left-1/6 font-[Playfair_Display] text-4xl text-shadow-lg"><h3>Buy the Book.</h3><h3>Skip the BookTok.</h3></div>
-  </div>
-  <div class="flex-1 h-full flex flex-col justify-around items-center">
-  {% block content %} {% endblock %}
+      <div data-theme="coffee"
+        class="bg-transparent absolute bottom-1/5 left-1/6 font-[Playfair_Display] text-4xl text-shadow-lg">
+        <h3>Buy the Book.</h3>
+        <h3>Skip the BookTok.</h3>
+      </div>
+    </div>
+    <div class="flex-1 h-full flex flex-col justify-around items-center">
+      {% block content %} {% endblock %}
+    </div>
   </div>
 </div>
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>C&V - Authors</title>
+{% endblock %}
+
+{% block body %}
+<section class="py-12">
+  <h3 class="text-4xl mb-4">Authors</h3>
+  <div class="_card-box h-auto">
+  {% for author in authors %}
+    <div class="_card overflow-hidden hover:scale-110 transition-all relative border-4 border-accent">
+      <img src="{{url_for('authors.author_image', id=author['id'])}}" class="object-center" />
+        <div class="grid grid-rows-subgrid row-span-2 bg-primary/50 pb-2 border-y-current/50 border-y-4">
+          <h1 class="pt-2 px-2 font-semibold -mb-1">{{author['name']}}</h1>
+          <p class="px-2 text-sm text-primary-content/60 italic">{{author['dob']}}</p>
+        </div>
+      <a href="{{url_for('authors.author', id=author['id'])}}" class="before:absolute before:inset-0"></a>
+    </div>
+  {% endfor %}
+  </div>
+</section>
+{% endblock %}

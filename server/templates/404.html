@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<section>
+  <h3 class="text-5xl my-8">Page not found!</h3>
+  <p class="mb-4">Sorry, we couldn't find that page for you!</p>
+  <a class="btn w-fit right-0" href="{{url_for('home')}}">Return to home</a>
+</section>
+{% endblock %}

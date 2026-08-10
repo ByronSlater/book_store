@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>C&V - {{author['name']}}</title>
+{% endblock %}
+
+{% block body %}
+<div class="flex flex-row pt-8">
+  <img src="{{url_for('authors.author_image', id=author['id'])}}"
+    class="border-8 border-base-200 mb-auto max-h-250px max-w-1/4">
+  <div class="flex flex-col ml-8">
+    <h3 class="text-6xl font-bold font-[Playfair_Display] mb-4">{{author['name']}}</h3>
+    {% for line in bio %}
+    <p class="*:text-primary block">{{line | safe}}</p>
+    {% endfor %}
+  </div>
+</div>
+<section>
+  <h3 class="text-xl mb-2">Books by {{author['name']}}</h3>
+  <ul>
+    {% for book in books %}
+    <li>{{book['title']}}</li>
+    {% endfor %}
+  </ul>
+</section>
+
+{% endblock %}
