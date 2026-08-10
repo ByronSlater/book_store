@@ -88,7 +88,7 @@ jobs:
             docker rm book_store || true
             docker image prune -f || true
             docker run -d \
-              -e WIKIMEDIA_ACCESS_TOKEN=${{secrets.WIKIMEDIA_ACCESS_TOKEN}}
+              -e WIKIMEDIA_ACCESS_TOKEN=${{secrets.WIKIMEDIA_ACCESS_TOKEN}} \
               --name book_store \
               --network book_store_network \
               --restart unless-stopped \
