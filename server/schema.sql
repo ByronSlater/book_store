@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS books CASCADE;
 
 CREATE TABLE
     books (
-        id SERIAL PRIMARY KEY,
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         title VARCHAR,
         author_id INT
     );
@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS authors CASCADE;
 
 CREATE TABLE
     authors (
-        id SERIAL PRIMARY KEY,
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         name VARCHAR UNIQUE,
         dob DATE,
         wikidata_id VARCHAR,
@@ -26,7 +26,7 @@ DROP TABLE IF EXISTS users CASCADE;
 
 CREATE TABLE
     users (
-        id SERIAL PRIMARY KEY,
+        id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         username VARCHAR UNIQUE,
         password VARCHAR
     );

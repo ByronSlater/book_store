@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>C&V - Add author</title>
+{% endblock %}
+
+{% block body %}
+
+<section class="py-12">
+  <div class="flex flex-row items-center justify-between">
+    <h2 class="text-3xl mb-4">Add a new author</h2>
+    <a href="{{url_for('authors.authors')}}" class="text-primary/70 underline italic">Back to authors list</a>
+  </div>
+
+  <form class="flex flex-col" id="search-form">
+    <div class="relative border-2 rounded-box px-4 py-2 mb-4">
+      <input class="peer w-full outline-none" type="text" name="stext" id="stext" placeholder=""/>
+      <label for="stext" class="absolute duration-150 left-4 px-2 bg-base-100 move-thing:text-xs move-thing:-translate-y-4 text-sm text-primary/60">Enter Author name</label>
+    </div>
+
+    <input id="search-button" type="submit" value="Search" class="py-2 px-4 btn disabled:opacity-50 ml-auto mr-4 rounded-sm">
+  </form>
+
+  <div id="search-results" class="_card-box">
+  </div>
+
+</section>
+
+
+<script>
+  document.getElementById('search-form').onsubmit = function (event) {
+    event.preventDefault(true);
+    const searchButton = document.getElementById('search-button');
+    searchButton.disabled = true;
+    const formData = new FormData(event.currentTarget);
+    const searchResultsElem = document.getElementById('search-results');
+
+    searchResultsElem.innerText = 'Loading...';
+
+    fetch('/authors/new/search',{
+      body: formData,
+      method: 'POST'
+    }).then(resp => {
+      return resp.json();
+    }).then(body => {
+      searchResultsElem.innerHTML = '';
+      for(const elem of body) {
+        const newCard = document.createElement('div');
+        const newImage = document.createElement('img');
+        const newDiv = document.createElement('div');
+        const newH1 = document.createElement('h1');
+        const newP = document.createElement('p');
+
+        searchButton.disabled = false;
+
+        newH1.textContent = elem['itemLabel']['value'];
+        newP.textContent = elem['itemDescription']['value'];
+
+        newImage.setAttribute('src', elem['image']['value']);
+        newImage.classList = 'absolute inset-0 w-full h-full object-cover';
+
+        newCard.classList = '_card';
+
+        newH1.classList = 'px-2';
+        newP.classList = 'px-2';
+
+        newDiv.appendChild(newH1);
+        newDiv.appendChild(newP);
+
+        newDiv.classList='grid grid-rows-subgrid z-1 row-span-2 bg-primary/50 pb-2 border-y-current/50 border-y-4';
+        newH1.classList='pt-2 px-2 font-semibold -mb-1';
+        newP.classList = 'px-2 text-sm text-primary-content/60 italic';
+
+        newCard.appendChild(newImage);
+        newCard.appendChild(document.createElement('div'));
+        newCard.appendChild(newDiv);
+
+        searchResultsElem.appendChild(newCard);
+
+        newCard.onclick = function(event) {
+          const fd = new FormData();
+          fd.append('wikidata_id', elem['entityId']['value']);
+          fd.append('name', elem['itemLabel']['value']);
+          console.log(fd);
+
+          fetch(
+            '/authors/new',
+            {
+              method: 'POST',
+              body: fd
+            }
+          ).then(resp => resp.json()
+          ).then(text => {
+            console.log(text);
+            searchResultsElem.removeChild(newCard);
+        })
+        }
+      }
+    });
+  }
+</script>
+{% endblock %}

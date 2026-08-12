@@ -4,7 +4,6 @@ from flask import current_app, g
 from psycopg.rows import dict_row
 
 
-
 def get_db():
     if 'db' not in g:
         g.db = psycopg.connect(
@@ -28,6 +27,7 @@ def init_db():
     with current_app.open_resource("schema.sql") as f:
         db.execute(f.read())
         db.commit()
+
 
 def seed_db():
     db = get_db()
